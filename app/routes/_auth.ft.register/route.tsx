@@ -3,7 +3,7 @@ import { Form, useActionData, useNavigate, useNavigation } from "@remix-run/reac
 import { useEffect } from "react";
 import { createGraphqlClient } from "~/clients/api";
 import { signupUserMutation, verifyEmailMutation } from "~/graphql/mutations/auth";
-import { serialize } from "cookie";
+// import { serialize } from "cookie";
 import { useCurrentUser, useSetCookie } from "~/hooks/auth";
 import SubmitButton from "../_auth/Components/SubmitButton";
 import { ActionData } from "types";
@@ -90,13 +90,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             const graphqlClient = createGraphqlClient();
             const { verifyEmail } = await graphqlClient.request(verifyEmailMutation, { input: { username, fullName, email, password, token: verificationToken } })
 
-            const cookie = serialize("__FlowTune_Token_server", verifyEmail?.authToken || "", {
-                maxAge: 60 * 60 * 24, // 1 day
-                httpOnly: true,
-                secure: true,
-                path: "/",
-                sameSite: "none",
-            });
+            // const cookie = serialize("__FlowTune_Token_server", verifyEmail?.authToken || "", {
+            //     maxAge: 60 * 60 * 24, // 1 day
+            //     httpOnly: true,
+            //     secure: true,
+            //     path: "/",
+            //     sameSite: "none",
+            // });
 
             return json<ActionData>(
                 {
@@ -114,7 +114,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
                 },
                 {
                     status: 200,
-                    headers: { "Set-Cookie": cookie },
+                    headers: { "Set-Cookie": "cookie" },
                 }
             );
         } catch (error: any) {

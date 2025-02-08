@@ -1,6 +1,6 @@
 import { json, type LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-import { parse } from "cookie"; // Import a safer way to parse cookies
+// import { parse } from "cookie"; // Import a safer way to parse cookies
 
 // Loader function to fetch the cookie
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -8,13 +8,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
 
   // Parse cookies safely using "cookie" package
-  const cookies = cookieHeader ? parse(cookieHeader) : {};       
+  // const cookies = cookieHeader ? parse(cookieHeader) : {};       
 
   // Extract the "__FlowTune_Token" cookie
-  const token = cookies["__FlowTune_Token_server"] ?? "";
+  // const token = cookies["__FlowTune_Token_server"] ?? "";
 
   // Return the token to the frontend
-  return json({ token });
+  return json({ token: "l" });
 };
 
 // Dummy Page Component

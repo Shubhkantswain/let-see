@@ -7,7 +7,7 @@ import SubmitButton from "../_auth/Components/SubmitButton";
 import { ActionFunctionArgs, json } from "@remix-run/cloudflare";
 import { createGraphqlClient } from "~/clients/api";
 import { loginUserMutation } from "~/graphql/mutations/auth";
-import { serialize } from "cookie";
+// import { serialize } from "cookie";
 import { useCurrentUser, useSetCookie } from "~/hooks/auth";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -50,13 +50,13 @@ export const action = async ({ request }: ActionFunctionArgs) => {
             input: { usernameOrEmail, password }
         });
 
-        const cookie = serialize("__FlowTune_Token_server", loginUser?.authToken || "", {
-            maxAge: 60 * 60 * 24, // 1 day
-            httpOnly: true,
-            secure: true,
-            path: "/",
-            sameSite: "none",
-        });
+        // const cookie = serialize("__FlowTune_Token_server", loginUser?.authToken || "", {
+        //     maxAge: 60 * 60 * 24, // 1 day
+        //     httpOnly: true,
+        //     secure: true,
+        //     path: "/",
+        //     sameSite: "none",
+        // });
 
         return json<ActionData>({
             isLoginSuccess: true,
