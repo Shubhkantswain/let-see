@@ -1,13 +1,18 @@
 import type { MetaFunction } from "@remix-run/cloudflare";
+import { useCurrentUser } from "~/hooks/auth";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
+    { title: "FlowTune" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
 
 export default function Index() {
+  const {data} = useCurrentUser()
+
+  console.log(data);
+  
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="flex flex-col items-center gap-16">
@@ -17,7 +22,7 @@ export default function Index() {
           </h1>
           <div className="h-[144px] w-[434px]">
             <img
-              src="/logo-light.png"
+              src="/logo-light.png" 
               alt="Remix"
               className="block w-full dark:hidden"
             />
