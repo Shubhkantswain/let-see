@@ -8,7 +8,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
 
   // Parse cookies safely using "cookie" package
-  const cookies = cookieHeader ? parse(cookieHeader) : {};
+  const cookies = cookieHeader ? parse(cookieHeader) : {};       
 
   // Extract the "__FlowTune_Token" cookie
   const token = cookies["__FlowTune_Token_server"] ?? "";
